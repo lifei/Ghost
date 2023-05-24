@@ -31,7 +31,7 @@ const PaidAccountActions = () => {
         let label = '';
         if (price) {
             const {amount = 0, currency, interval} = price;
-            label = `${Intl.NumberFormat('en', {currency, style: 'currency'}).format(amount / 100)}/${interval}`;
+            label = `${Intl.NumberFormat('zh', {currency, style: 'currency'}).format(amount / 100)}/${interval}`;
         }
         let offerLabelStr = getOfferLabel({price, offer, subscriptionStartDate: startDate, t});
         const compExpiry = getCompExpiry({member});
@@ -39,7 +39,7 @@ const PaidAccountActions = () => {
             if (compExpiry) {
                 label = `${t('Complimentary')} - ${t('Expires {{expiryDate}}', {expiryDate: compExpiry})}`;
             } else {
-                label = label ? `${t('Complimentary')} (${label})` : t(`Complimentary`);
+                label = label ? t('Complimentary ({{- label}})', {label}) : t('Complimentary');
             }
         }
         let oldPriceClassName = '';

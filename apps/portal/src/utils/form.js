@@ -4,18 +4,19 @@ export const FormInputError = ({field}) => {
     if (field.required && !field.value) {
         switch (field.name) {
         case 'name':
-            return `Enter your name`;
+            return 'Enter your name';
         
         case 'email':
-            return `Enter your email address`;
+            return 'Enter your email address';
 
         default:
-            return `Please enter ${field.name}`;
+            const name = field.name;
+            return `Please enter ${name}`;
         }
     }
 
     if (field.type === 'email' && !Validator.isValidEmail(field.value)) {
-        return `Invalid email address`;
+        return 'Invalid email address';
     }
     return null;
 };

@@ -24,7 +24,7 @@ const ContinueSubscriptionButton = () => {
         if (!subscription.cancel_at_period_end) {
             return null;
         }
-        const currentPeriodEnd = subscription.current_period_end;
+        const expiryAt = subscription.current_period_end;
         return (
             <p className='gh-portal-text-center gh-portal-free-ctatext'>{t(`Your subscription will expire on {{expiryDate}}`, {expiryDate: getDateString(currentPeriodEnd)})}</p>
         );

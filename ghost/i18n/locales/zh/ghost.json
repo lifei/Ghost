@@ -1,4 +1,11 @@
 {
+    "🚩 A comment has been reported on your post": "你帖子下的一条评论被举报了",
+    "↪️ New reply to your comment on {{postTitle}}": "你的评论有新回复：{{postTitle}}",
+    "💬 New comment on {{postTitle}}": "有新评论发布在《{{postTitle}}》",
+    "💬 New comment on your post: {{postTitle}}": "有新评论发布在你的贴子：{{postTitle}}",
+    "Someone just left a comment on your post:": "有人在你的贴子下发布了一条评论：",
+    "New comment on {{postTitle}}": "新评论发布在{{postTitle}}",
+    "View comments": "查看评论",
     "All the best!": "一切顺利！",
     "Complete signup for {{siteTitle}}!": "完成在{{siteTitle}}的注册！",
     "Complete your sign up to {{siteTitle}}!": "完成您在 {{siteTitle}} 的注册！",

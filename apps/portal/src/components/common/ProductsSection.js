@@ -636,7 +636,7 @@ function ProductCardPrice({product}) {
 }
 
 function FreeProductCard({products, handleChooseSignup, error}) {
-    const {site, action} = useContext(AppContext);
+    const {site, action, t} = useContext(AppContext);
     const {selectedProduct, setSelectedProduct} = useContext(ProductsContext);
 
     let cardClass = selectedProduct === 'free' ? 'gh-portal-product-card free checked' : 'gh-portal-product-card free';
@@ -668,7 +668,7 @@ function FreeProductCard({products, handleChooseSignup, error}) {
     }
 
     if (!freeProductDescription && !freeBenefits.length) {
-        freeProductDescription = 'Free preview';
+        freeProductDescription = t('Free preview');
     }
 
     return (
@@ -707,7 +707,7 @@ function FreeProductCard({products, handleChooseSignup, error}) {
                                 onClick={(e) => {
                                     handleChooseSignup(e, 'free');
                                 }}>
-                                {((selectedProduct === 'free' && disabled) ? <LoaderIcon className='gh-portal-loadingicon' /> : 'Choose')}
+                                {((selectedProduct === 'free' && disabled) ? <LoaderIcon className='gh-portal-loadingicon' /> : t('Choose'))}
                             </button>
                             {error && <div className="gh-portal-error-message">{error}</div>}
                         </div>
@@ -719,6 +719,7 @@ function FreeProductCard({products, handleChooseSignup, error}) {
 }
 
 function ProductCardButton({selectedProduct, product, disabled, noOfProducts, trialDays}) {
+    const {t} = useContext(AppContext);
     if (selectedProduct === product.id && disabled) {
         return (
             <LoaderIcon className='gh-portal-loadingicon' />
@@ -729,11 +730,12 @@ function ProductCardButton({selectedProduct, product, disabled, noOfProducts, tr
         return ('Start ' + trialDays + '-day free trial');
     }
 
-    return (noOfProducts > 1 ? 'Choose' : 'Continue');
+    return (noOfProducts > 1 ? t('Choose') : t('Continue'));
 }
 
 function ProductCard({product, products, selectedInterval, handleChooseSignup, error}) {
     const {selectedProduct, setSelectedProduct} = useContext(ProductsContext);
+    const {t} = useContext(AppContext);
     const {action} = useContext(AppContext);
     const trialDays = product.trial_days;
 
@@ -750,7 +752,7 @@ function ProductCard({product, products, selectedInterval, handleChooseSignup, e
 
     let productDescription = product.description;
     if ((!product.benefits || !product.benefits.length) && !productDescription) {
-        productDescription = 'Full access';
+        productDescription = t('Full access');
     }
 
     return (

@@ -20,7 +20,7 @@ function EmailNewsletterAction() {
         <section>
             <div className='gh-portal-list-detail email-newsletter'>
                 <h3>{t('Email newsletter')}</h3>
-                <p>{label} {hasMemberGotEmailSuppression({member}) && subscribed && <button
+                <p>{t(label)} {hasMemberGotEmailSuppression({member}) && subscribed && <button
                     className='gh-portal-btn-text gh-email-faq-page-button'
                     onClick={() => onAction('switchPage', {page: 'emailReceivingFAQ', lastPage: 'accountHome'})}
                 >

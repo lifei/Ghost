@@ -3,6 +3,7 @@ const path = require('path');
 const moment = require('moment');
 const htmlToPlaintext = require('@tryghost/html-to-plaintext');
 const emailService = require('../email-service');
+const {t} = require('../i18n');
 
 class CommentsServiceEmails {
     constructor({config, logging, models, mailer, settingsCache, settingsHelpers, urlService, urlUtils}) {
@@ -28,15 +29,16 @@ class CommentsServiceEmails {
             }
 
             const to = author.get('email');
-            const subject = '💬 New comment on your post: ' + post.get('title');
+            const postTitle = post.get('title');
+            const subject = t('💬 New comment on your post: {{postTitle}}', {postTitle});
 
-            const memberName = member.get('name') || 'Anonymous';
+            const memberName = member.get('name') || t('Anonymous');
 
             const templateData = {
                 siteTitle: this.settingsCache.get('title'),
                 siteUrl: this.urlUtils.getSiteUrl(),
                 siteDomain: this.siteDomain,
-                postTitle: post.get('title'),
+                postTitle,
                 postUrl: this.urlService.getUrlByResourceId(post.get('id'), {absolute: true}),
                 commentHtml: comment.get('html'),
                 commentDate: moment(comment.get('created_at')).tz(this.settingsCache.get('timezone')).format('D MMM YYYY'),
@@ -74,18 +76,19 @@ class CommentsServiceEmails {
         }
 
         const to = parentMember.get('email');
-        const subject = '↪️ New reply to your comment on ' + this.settingsCache.get('title');
+        const postTitle = this.settingsCache.get('title');
+        const subject = t('↪️ New reply to your comment on {{postTitle}}', {postTitle});
 
         const post = await this.models.Post.findOne({id: reply.get('post_id')});
         const member = await this.models.Member.findOne({id: reply.get('member_id')});
 
-        const memberName = member.get('name') || 'Anonymous';
+        const memberName = member.get('name') || t('Anonymous');
 
         const templateData = {
             siteTitle: this.settingsCache.get('title'),
             siteUrl: this.urlUtils.getSiteUrl(),
             siteDomain: this.siteDomain,
-            postTitle: post.get('title'),
+            postTitle,
             postUrl: this.urlService.getUrlByResourceId(post.get('id'), {absolute: true}),
             replyHtml: reply.get('html'),
             replyDate: moment(reply.get('created_at')).tz(this.settingsCache.get('timezone')).format('D MMM YYYY'),
@@ -120,9 +123,9 @@ class CommentsServiceEmails {
 
         // For now we only send the report to the owner
         const to = owner.get('email');
-        const subject = '🚩 A comment has been reported on your post';
+        const subject = t('🚩 A comment has been reported on your post');
 
-        const memberName = member.get('name') || 'Anonymous';
+        const memberName = member.get('name') || t('Anonymous');
 
         const templateData = {
             siteTitle: this.settingsCache.get('title'),

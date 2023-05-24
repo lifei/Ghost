@@ -465,7 +465,7 @@ class SignupPage extends React.Component {
                 name: 'email',
                 required: true,
                 tabindex: 2,
-                errorMessage: errors.email || ''
+                errorMessage: t(errors.email) || ''
             }
         ];
 
@@ -479,7 +479,7 @@ class SignupPage extends React.Component {
                 name: 'name',
                 required: true,
                 tabindex: 1,
-                errorMessage: errors.name || ''
+                errorMessage: t(errors.name) || ''
             });
         }
         fields[0].autoFocus = true;
