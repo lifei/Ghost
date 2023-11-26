@@ -1,0 +1,13 @@
+version: "3"
+services:
+  build:
+    network_mode: none
+    image: 7v1.net/ghost:${GHOST_VERSION}
+    build:
+      context: .
+      dockerfile_inline: |
+        FROM ghost:${GHOST_VERSION}
+        ADD casper     /var/lib/ghost/versions/${GHOST_VERSION}/content/themes/casper
+        ADD ghost/core /var/lib/ghost/versions/${GHOST_VERSION}/core
+        ADD ghost/i18n /var/lib/ghost/versions/${GHOST_VERSION}/node_modules/@tryghost/i18n
+

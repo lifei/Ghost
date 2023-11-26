@@ -1,0 +1,29 @@
+{{{html}}}
+<aside class="gh-post-upgrade-cta">
+    <div class="gh-post-upgrade-cta-content" style="background-color: {{@site.accent_color}}">
+        {{#has visibility="paid"}}
+            {{#is "page"}}
+                <h2>{{t "{article} is for paying subscribers only" article=(t "This page")}}</h2>
+            {{else}}
+                <h2>{{t "{article} is for paying subscribers only" article=(t "This post")}}</h2>
+            {{/is}}
+        {{/has}}
+        {{#has visibility="members"}}
+            <h2>这{{#is "page"}}个页面{{else}}篇文章{{/is}}仅限会员阅读。</h2>
+        {{/has}}
+        {{#has visibility="tiers"}}
+            {{#is "page"}}
+                <h2>{{t "{article} is for subscribers only:" article=(t "This page")}} {{tiers}} </h2>
+            {{else}}                                                                 
+                <h2>{{t "{article} is for subscribers only:" article=(t "This post")}} {{tiers}} </h2>
+            {{/is}}
+        {{/has}}
+        {{#if @member}}
+            <a class="gh-btn" data-portal="account/plans" style="color:{{@site.accent_color}}">Upgrade your account</a>
+        {{else}}
+            <a class="gh-btn" data-portal="signin" style="display:none;color:{{@site.accent_color}}">{{t "Sign in"}}</a>
+            <a class="gh-btn" data-portal="signup" style="color:{{@site.accent_color}}">{{t "Subscribe now"}}</a>
+            <p><small>{{t "Already have an account?"}} <a data-portal="signin">{{t "Sign in"}}</a></small></p>
+        {{/if}}
+    </div>
+</aside>

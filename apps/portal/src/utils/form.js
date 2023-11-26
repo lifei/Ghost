@@ -5,7 +5,7 @@ export const FormInputError = ({field}) => {
         switch (field.name) {
         case 'name':
             return 'Enter your name';
-        
+
         case 'email':
             return 'Enter your email address';
 
